@@ -20,7 +20,7 @@ const configSchema = z.object({
   }),
   reporting: z.object({
     htmlPath: z.string(),
-    errorRecipients: z.array(z.string().email()),
+    errorRecipients: z.array(z.email()),
   }),
   jobs: z.array(jobSchema),
 });
@@ -56,7 +56,8 @@ export class ConfigManager {
       return path.resolve(this.configPath);
     }
 
-    const defaultConfigPath = path.join('./config', 'config.json');
+    // const defaultConfigPath = path.join('./config', 'config.json');
+    const defaultConfigPath = process.env.CONFIG_PATH || path.join('./config', 'config.json');
 
     const defaultTomlPath = path.join('./config', 'config.toml');
 

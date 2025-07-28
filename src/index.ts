@@ -38,6 +38,17 @@ await yargs(hideBin(process.argv))
         const keys: { [kid: string]: string } = {};
         if (process.env.KEY_V1) keys.v1 = process.env.KEY_V1;
         if (process.env.KEY_V2) keys.v2 = process.env.KEY_V2;
+        if (process.env.KEY_V3) keys.v3 = process.env.KEY_V3;
+
+        // should check the endpoint, region, and credentials keys
+        if (
+          !process.env.S3_ENDPOINT ||
+          !process.env.S3_REGION ||
+          !process.env.AWS_ACCESS_KEY_ID ||
+          !process.env.AWS_SECRET_ACCESS_KEY
+        ) {
+          throw new Error('Missing required S3 environment variables.');
+        }
 
         const store = new SecureS3Store({
           keys,
@@ -46,8 +57,8 @@ await yargs(hideBin(process.argv))
             endpoint: process.env.S3_ENDPOINT,
             region: process.env.S3_REGION,
             credentials: {
-              accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-              secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+              accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+              secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
             },
           },
           logger,
@@ -67,7 +78,6 @@ await yargs(hideBin(process.argv))
         reportData.errors.push(...pruneResult.errors);
         logger.info('Prune process completed.');
         */
-
       } catch (error) {
         const errorMessage = (error as Error).message;
         logger.error('A critical error occurred during the backup process:', {
