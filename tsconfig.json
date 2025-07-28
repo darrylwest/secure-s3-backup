@@ -6,7 +6,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "secure-s3-store": ["../secure-s3-store/src"]
+    }
   },
   "include": ["src/**/*", "e2e/**/*"]
 }
