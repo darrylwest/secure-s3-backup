@@ -1,0 +1,20 @@
+{
+  "s3": {
+    "bucket": "my-backup-bucket"
+  },
+  "reporting": {
+    "htmlPath": "/var/www/html/backups",
+    "errorRecipients": ["ops@example.com"]
+  },
+  "jobs": [
+    {
+      "name": "Daily Redis Backup",
+      "path": "/var/lib/redis/dump.rdb",
+      "s3KeyPrefix": "redis-backups/",
+      "policy": {
+        "retentionCount": 7,
+        "frequency": "daily"
+      }
+    }
+  ]
+}
