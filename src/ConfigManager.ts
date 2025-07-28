@@ -58,7 +58,7 @@ export class ConfigManager {
 
     const defaultConfigPath = path.join('./config', 'config.json');
 
-    const defaultTomlPath = path.join('./config',  'config.toml');
+    const defaultTomlPath = path.join('./config', 'config.toml');
 
     if (fs.existsSync(defaultConfigPath)) {
       return defaultConfigPath;
