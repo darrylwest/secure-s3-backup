@@ -11,6 +11,7 @@
     "test": "jest",
     "build": "npm run clean && tsc -b",
     "lint": "eslint .",
+    "format": "prettier --write .",
     "start": "ts-node src/index.ts",
     "lint:fix": "eslint . --fix",
     "postinstall": "cd ../secure-s3-store && npm install && npm run build"

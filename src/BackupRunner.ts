@@ -42,9 +42,7 @@ export class BackupRunner {
     const fileData = await this.readFile(job.path);
 
     if (!fileData) {
-      this.logger.warn(
-        `Skipping job "${job.name}" because file not found at: ${job.path}`,
-      );
+      this.logger.warn(`Skipping job "${job.name}" because file not found at: ${job.path}`);
       return false;
     }
 

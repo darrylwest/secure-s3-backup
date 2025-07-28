@@ -11,11 +11,7 @@ export interface LoggerConfig {
 }
 
 export function configureLogger(config: LoggerConfig = {}): winston.Logger {
-  const {
-    consoleLogLevel = 'info',
-    fileLogLevel = 'info',
-    logDir = 'logs',
-  } = config;
+  const { consoleLogLevel = 'info', fileLogLevel = 'info', logDir = 'logs' } = config;
 
   // Create the log directory if it does not exist
   if (!fs.existsSync(logDir)) {
@@ -29,10 +25,7 @@ export function configureLogger(config: LoggerConfig = {}): winston.Logger {
     zippedArchive: true,
     maxSize: '20m',
     maxFiles: '14d',
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.json(),
-    ),
+    format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
   });
 
   const logger = winston.createLogger({
@@ -48,10 +41,7 @@ export function configureLogger(config: LoggerConfig = {}): winston.Logger {
     transports: [
       new winston.transports.Console({
         level: consoleLogLevel,
-        format: winston.format.combine(
-          winston.format.colorize(),
-          winston.format.simple(),
-        ),
+        format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
       }),
       dailyRotateFileTransport,
     ],

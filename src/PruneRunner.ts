@@ -36,9 +36,7 @@ export class PruneRunner {
   private async runJob(job: Config['jobs'][number]): Promise<number> {
     const retentionCount = job.policy.retentionCount;
     if (retentionCount <= 0) {
-      this.logger.info(
-        `Skipping prune for job "${job.name}" due to retention count policy.`,
-      );
+      this.logger.info(`Skipping prune for job "${job.name}" due to retention count policy.`);
       return 0;
     }
 
@@ -55,14 +53,9 @@ export class PruneRunner {
 
     // Sort backups by date, oldest first
     const sortedBackups = allBackups.sort();
-    const backupsToDelete = sortedBackups.slice(
-      0,
-      sortedBackups.length - retentionCount,
-    );
+    const backupsToDelete = sortedBackups.slice(0, sortedBackups.length - retentionCount);
 
-    this.logger.info(
-      `Found ${backupsToDelete.length} old backups to prune for job "${job.name}".`,
-    );
+    this.logger.info(`Found ${backupsToDelete.length} old backups to prune for job "${job.name}".`);
 
     let deletedCount = 0;
     for (const backupKey of backupsToDelete) {
