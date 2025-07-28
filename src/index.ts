@@ -4,14 +4,12 @@ import { hideBin } from 'yargs/helpers';
 
 import { ConfigManager } from './ConfigManager.js';
 import { BackupRunner } from './BackupRunner.js';
-import { PruneRunner } from './PruneRunner.js';
+// import { PruneRunner } from './PruneRunner.js';
 import { ReportGenerator, ReportData } from './ReportGenerator.js';
 import { SecureS3Store } from 'secure-s3-store';
 import { configureLogger } from './logger.js';
 
 const logger = configureLogger();
-
-logger.info('secure-s3-backup starting...');
 
 await yargs(hideBin(process.argv))
   .command(
@@ -60,12 +58,16 @@ await yargs(hideBin(process.argv))
         reportData.filesUploaded = backupResult.filesUploaded;
         reportData.errors.push(...backupResult.errors);
 
+        logger.info('Backup process completed.');
+
+        /*
         const pruneRunner = new PruneRunner(config, store, logger);
         const pruneResult = await pruneRunner.runAll();
         reportData.filesDeleted = pruneResult.filesDeleted;
         reportData.errors.push(...pruneResult.errors);
+        logger.info('Prune process completed.');
+        */
 
-        logger.info('Backup and prune process completed.');
       } catch (error) {
         const errorMessage = (error as Error).message;
         logger.error('A critical error occurred during the backup process:', {

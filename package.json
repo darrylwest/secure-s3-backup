@@ -12,9 +12,10 @@
     "build": "npm run clean && tsc -b",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "dotenvx run -- node --import ./loader.mjs dist/index.js backup",
-    "version": "dotenvx run -- node --import ./loader.mjs dist/index.js --version",
-    "help": "dotenvx run -- node --import ./loader.mjs dist/index.js --help",
+    "start": "dotenvx run -- node --no-deprecation --import ./loader.mjs dist/index.js backup",
+    "backup": "dotenvx run -- node --no-deprecation --import ./loader.mjs dist/index.js backup",
+    "version": "dotenvx run -- node --no-deprecation --import ./loader.mjs dist/index.js --version",
+    "help": "dotenvx run -- node --no-deprecation --import ./loader.mjs dist/index.js --help",
     "lint:fix": "eslint . --fix",
     "clobber": "rm -fr dist node_modules package-lock.json"
   },
@@ -23,8 +24,8 @@
     "url": "git+https://github.com/darrylwest/secure-s3-backup.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "darrylwest",
+  "license": "Apache-2.0",
   "type": "module",
   "bugs": {
     "url": "https://github.com/darrylwest/secure-s3-backup/issues"

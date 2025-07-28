@@ -1,6 +1,6 @@
 {
   "s3": {
-    "bucket": "my-backup-bucket"
+    "bucket": "rcs-develop"
   },
   "reporting": {
     "htmlPath": "./reports",
@@ -10,7 +10,7 @@
     {
       "name": "Daily Valkey Backup",
       "path": "./data/dump.rdb",
-      "s3KeyPrefix": "valkey-backups/",
+      "s3KeyPrefix": "database/",
       "policy": {
         "retentionCount": 7,
         "frequency": "daily"

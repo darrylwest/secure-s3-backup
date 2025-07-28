@@ -36,7 +36,7 @@ export function configureLogger(config: LoggerConfig = {}): winston.Logger {
       }),
       winston.format.errors({ stack: true }),
       winston.format.splat(),
-      winston.format.json(),
+      // winston.format.json(),
     ),
     transports: [
       new winston.transports.Console({
