@@ -1,0 +1,47 @@
+{
+  "name": "secure-s3-backup",
+  "version": "1.0.0",
+  "description": "A backup utility that uses secure-s3-store to encrypt backup files and store in s3 compatible storage.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "lint": "eslint .",
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrylwest/secure-s3-backup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/darrylwest/secure-s3-backup/issues"
+  },
+  "homepage": "https://github.com/darrylwest/secure-s3-backup#readme",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.48.3",
+    "nodemailer": "^7.0.5",
+    "secure-s3-store": "github:darrylwest/secure-s3-store",
+    "toml": "^3.0.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "yargs": "^18.0.0",
+    "zod": "^4.0.10"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/yargs": "^17.0.33",
+    "eslint": "^9.32.0",
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
