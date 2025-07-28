@@ -56,14 +56,9 @@ export class ConfigManager {
       return path.resolve(this.configPath);
     }
 
-    const home = process.env.HOME;
-    if (!home) {
-      throw new Error('HOME environment variable not set.');
-    }
+    const defaultConfigPath = path.join('./config', 'config.json');
 
-    const defaultConfigPath = path.join(home, '.config', 'secure-s3-backup', 'config.json');
-
-    const defaultTomlPath = path.join(home, '.config', 'secure-s3-backup', 'config.toml');
+    const defaultTomlPath = path.join('./config',  'config.toml');
 
     if (fs.existsSync(defaultConfigPath)) {
       return defaultConfigPath;

@@ -8,7 +8,6 @@ import { PruneRunner } from './PruneRunner.js';
 import { ReportGenerator, ReportData } from './ReportGenerator.js';
 import { SecureS3Store } from 'secure-s3-store';
 import { configureLogger } from './logger.js';
-import 'dotenvx/config';
 
 const logger = configureLogger();
 

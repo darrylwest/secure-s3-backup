@@ -2,7 +2,7 @@
 bucket = "my-backup-bucket"
 
 [reporting]
-htmlPath = "/var/www/html/backups"
+htmlPath = "./reports"
 errorRecipients = ["ops@example.com"]
 
 [[jobs]]

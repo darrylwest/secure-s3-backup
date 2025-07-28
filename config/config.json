@@ -3,14 +3,14 @@
     "bucket": "my-backup-bucket"
   },
   "reporting": {
-    "htmlPath": "/var/www/html/backups",
+    "htmlPath": "./reports",
     "errorRecipients": ["ops@example.com"]
   },
   "jobs": [
     {
-      "name": "Daily Redis Backup",
-      "path": "/var/lib/redis/dump.rdb",
-      "s3KeyPrefix": "redis-backups/",
+      "name": "Daily Valkey Backup",
+      "path": "./data/dump.rdb",
+      "s3KeyPrefix": "valkey-backups/",
       "policy": {
         "retentionCount": 7,
         "frequency": "daily"

@@ -12,7 +12,9 @@
     "build": "npm run clean && tsc -b",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "ts-node src/index.ts",
+    "start": "dotenvx run -- node --loader ts-node/esm src/index.ts backup",
+    "version": "dotenvx run -- node --loader ts-node/esm src/index.ts --version",
+    "help": "dotenvx run -- node --loader ts-node/esm src/index.ts --help",
     "lint:fix": "eslint . --fix",
     "postinstall": "cd ../secure-s3-store && npm install && npm run build"
   },
