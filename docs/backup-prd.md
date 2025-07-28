@@ -6,7 +6,7 @@
 
 ### 1.1 Project Goal
 
-To create a simple, secure, and developer-friendly npm backup utility for storing and retrieving encrypted backups from any S3-compatible object storage service (e.g., AWS S3, DigitalOcean Spaces).
+To create a simple, secure, and DevOps-friendly npm backup utility for storing and retrieving encrypted backups from any S3-compatible object storage service (e.g., AWS S3, DigitalOcean Spaces).
 
 ### 1.2 Problem Statement
 
@@ -25,11 +25,11 @@ DevOps engineers responsible for maintaining cloud environments.
 
 ## 2. Core Features
 
-This CLI application reads a configuration file to 1) establish polices and 2) defines the files that need to be backed up using policies.  The backup configuation should be JSON or toml to make it easy for the DevOps person to update.  Backup scripts are usually triggered by `cron` or some other scheduling application.
+This CLI application reads a configuration file to 1) establish polices and 2) define files that need to be backed up using policies.  The backup configuation should be JSON or toml to make it easy for DevOps to update.  Backup scripts are usually triggered by `cron` or some other scheduling application.
 
 ### 2.1 Application starup
 
-On startup the application reads its configuration file from a standard location, or specified in a local .env file or env setting.  The standard locaiont is a config folder with either config.json or config.toml in the folder.  If the configuration is not located or can't be parsed an error will be logged and the application quits.
+On startup the application reads its configuration file from a standard location, or specified in a local .env file or env setting.  The standard locaion is a config folder with either config.json or config.toml in the folder.  If the configuration is not located or can't be parsed an error will be logged and the application quits.
 
 ### 2.2 Configuration Process
 
@@ -37,7 +37,7 @@ After reading and parsing the configuration it's checked accuracy (missing or mi
 
 ### 2.3 Backup Process
 
-Backups are processed in one at a time, or in parallel if the policy permits.  The maximum parallel backup jobs is limited by a global policy.  For small files it is customary to set the policy to parallel.  Large files are set to serial to ensure proper memory management. 
+Backups are processed in one at a time, or in parallel if the policy permits (e.g., max_jobs=4).  The maximum parallel backup jobs is limited by a global policy.  For small files it is customary to set the policy to parallel.  Large files are set to serial to ensure proper memory management. 
 
 Some files should be backed up in pairs, e.g., dump.rdb and appendonly.aof.  For that condition their is a `group` policy with a group name.
 
