@@ -10,7 +10,11 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "rootDir": "src",
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "secure-s3-store": ["../secure-s3-store/dist/src/index.d.ts"],
+      "secure-s3-store/*": ["../secure-s3-store/dist/src/*"]
+    }
   },
   "include": ["src/**/*"],
   "references": [
