@@ -10,7 +10,8 @@
     "test": "jest",
     "build": "tsc",
     "lint": "eslint .",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/darrylwest/secure-s3-backup/issues"
   },
@@ -38,10 +39,13 @@
     "@types/node": "^24.1.0",
     "@types/yargs": "^17.0.33",
     "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
     "jest": "^30.0.5",
     "prettier": "^3.6.2",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
   }
 }

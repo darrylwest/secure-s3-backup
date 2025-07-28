@@ -39,12 +39,12 @@ export class ConfigManager {
 
     const resolvedPath = this.resolveConfigPath();
     const rawConfig = fs.readFileSync(resolvedPath, 'utf-8');
-    
-    let parsedConfig: any;
+
+    let parsedConfig: unknown;
     if (resolvedPath.endsWith('.toml')) {
-        parsedConfig = toml.parse(rawConfig);
+      parsedConfig = toml.parse(rawConfig);
     } else {
-        parsedConfig = JSON.parse(rawConfig);
+      parsedConfig = JSON.parse(rawConfig);
     }
 
     this.config = configSchema.parse(parsedConfig);
@@ -67,20 +67,20 @@ export class ConfigManager {
       'secure-s3-backup',
       'config.json',
     );
-    
+
     const defaultTomlPath = path.join(
-        home,
-        '.config',
-        'secure-s3-backup',
-        'config.toml',
-      );
+      home,
+      '.config',
+      'secure-s3-backup',
+      'config.toml',
+    );
 
     if (fs.existsSync(defaultConfigPath)) {
       return defaultConfigPath;
     }
-    
+
     if (fs.existsSync(defaultTomlPath)) {
-        return defaultTomlPath;
+      return defaultTomlPath;
     }
 
     throw new Error('Configuration file not found.');

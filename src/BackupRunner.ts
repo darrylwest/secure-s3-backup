@@ -5,6 +5,11 @@ import fs from 'fs';
 import path from 'path';
 import winston from 'winston';
 
+export interface BackupResult {
+  filesUploaded: number;
+  errors: string[];
+}
+
 export class BackupRunner {
   constructor(
     private readonly config: Config,
@@ -12,21 +17,27 @@ export class BackupRunner {
     private readonly logger: winston.Logger,
   ) {}
 
-  public async runAll(): Promise<void> {
+  public async runAll(): Promise<BackupResult> {
     this.logger.info('Starting backup run for all jobs.');
+    const result: BackupResult = { filesUploaded: 0, errors: [] };
+
     for (const job of this.config.jobs) {
       try {
-        await this.runJob(job);
+        const uploaded = await this.runJob(job);
+        if (uploaded) {
+          result.filesUploaded++;
+        }
       } catch (error) {
-        this.logger.error(`Failed to run job "${job.name}"`, {
-          error: (error as Error).message,
-        });
+        const errorMessage = `Failed to run job "${job.name}": ${(error as Error).message}`;
+        this.logger.error(errorMessage, { error });
+        result.errors.push(errorMessage);
       }
     }
     this.logger.info('Backup run finished.');
+    return result;
   }
 
-  private async runJob(job: Config['jobs'][number]): Promise<void> {
+  private async runJob(job: Config['jobs'][number]): Promise<boolean> {
     this.logger.info(`Running backup job: "${job.name}"`);
     const fileData = await this.readFile(job.path);
 
@@ -34,7 +45,7 @@ export class BackupRunner {
       this.logger.warn(
         `Skipping job "${job.name}" because file not found at: ${job.path}`,
       );
-      return;
+      return false;
     }
 
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -44,6 +55,7 @@ export class BackupRunner {
     this.logger.info(`Uploading backup to ${s3Path}`);
     await this.store.put(s3Path, fileData);
     this.logger.info(`Successfully uploaded backup for job "${job.name}"`);
+    return true;
   }
 
   private async readFile(filePath: string): Promise<Buffer | null> {
