@@ -34,7 +34,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.48.3",
     "nodemailer": "^7.0.5",
-    "secure-s3-store": "file:../secure-s3-store",
+    "secure-s3-store": "git+https://github.com/darrylwest/secure-s3-store.git#v1.0.6",
     "toml": "^3.0.0",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0",
