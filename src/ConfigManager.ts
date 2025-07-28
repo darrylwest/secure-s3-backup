@@ -56,15 +56,13 @@ export class ConfigManager {
       return path.resolve(this.configPath);
     }
 
-    // const defaultConfigPath = path.join('./config', 'config.json');
+    // try to find a default config file in environment variables or default paths
     const defaultConfigPath = process.env.CONFIG_PATH || path.join('./config', 'config.json');
-
-    const defaultTomlPath = path.join('./config', 'config.toml');
-
     if (fs.existsSync(defaultConfigPath)) {
       return defaultConfigPath;
     }
 
+    const defaultTomlPath = path.join('./config', 'config.toml');
     if (fs.existsSync(defaultTomlPath)) {
       return defaultTomlPath;
     }

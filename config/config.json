@@ -4,13 +4,13 @@
   },
   "reporting": {
     "htmlPath": "./reports",
-    "errorRecipients": ["ops@example.com"]
+    "errorRecipients": ["darryl@lumiinux.com"]
   },
   "jobs": [
     {
       "name": "Daily Valkey Backup",
       "path": "./data/dump.rdb",
-      "s3KeyPrefix": "database/",
+      "s3KeyPrefix": "backups/",
       "policy": {
         "retentionCount": 7,
         "frequency": "daily"

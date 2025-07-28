@@ -1,6 +1,6 @@
 {
   "name": "secure-s3-backup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A backup utility that uses secure-s3-store to encrypt backup files and store in s3 compatible storage.",
   "main": "index.js",
   "directories": {
