@@ -2,15 +2,18 @@
   "compilerOptions": {
     "target": "es2022",
     "module": "nodenext",
+    "moduleResolution": "nodenext",
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "secure-s3-store": ["../secure-s3-store/src"]
-    }
+    "rootDir": "src",
+    "declaration": true
   },
-  "include": ["src/**/*", "e2e/**/*"]
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../secure-s3-store" }
+  ]
 }

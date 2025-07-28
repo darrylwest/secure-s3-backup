@@ -7,8 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
+    "clean": "rm -fr dist",
     "test": "jest",
-    "build": "tsc",
+    "build": "npm run clean && tsc -b",
     "lint": "eslint .",
     "start": "ts-node src/index.ts",
     "lint:fix": "eslint . --fix",
