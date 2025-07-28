@@ -106,7 +106,9 @@ export class ReportGenerator {
 
     try {
       const info = await this.transporter.sendMail(mailOptions);
-      this.logger.info('Error report email sent.', { messageId: info.messageId });
+      this.logger.info('Error report email sent.', {
+        messageId: info.messageId,
+      });
       // For jsonTransport, the message is in info.message
       this.logger.info('Email content:', { email: info.message });
     } catch (error) {
